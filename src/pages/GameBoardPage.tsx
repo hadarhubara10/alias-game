@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from '../store/gameStore';
 import { GamePhase } from '../store/types';
@@ -14,6 +14,7 @@ export function GameBoardPage() {
     phase,
     timerDuration,
     teams,
+    currentTeamIndex,
     stealClaimed,
     markCorrect,
     markSkipped,
@@ -22,6 +23,8 @@ export function GameBoardPage() {
     skipSteal,
     proceedFromSummary,
   } = useGameStore();
+
+  const [stealClaimedByIndex, setStealClaimedByIndex] = useState<0 | 1 | null>(null);
 
   const { playTick, playTurnEnd, playCorrect, playBuzz } = useAudio();
 
@@ -59,6 +62,8 @@ export function GameBoardPage() {
       navigate(ROUTES.HOME);
     } else if (phase === GamePhase.END) {
       navigate(ROUTES.END);
+    } else if (phase === GamePhase.STEAL) {
+      setStealClaimedByIndex(null);
     }
   }, [phase, navigate]);
 
@@ -73,6 +78,7 @@ export function GameBoardPage() {
 
   const handleClaimSteal = (teamIndex: 0 | 1) => {
     playBuzz();
+    setStealClaimedByIndex(teamIndex);
     claimSteal(teamIndex);
   };
 
@@ -166,30 +172,41 @@ export function GameBoardPage() {
 
           {/* Buttons fill remaining space */}
           {stealClaimed ? (
-            <div className="flex-1 flex items-center justify-center text-3xl font-black text-emerald-400 animate-bounce">
-              נגנב! 🎉
+            <div className="flex-1 flex flex-col items-center justify-center gap-2 animate-bounce">
+              {stealClaimedByIndex === currentTeamIndex ? (
+                <>
+                  <span className="text-4xl">🛡️</span>
+                  <span className="text-3xl font-black text-emerald-400">הצלתם!</span>
+                  <span className="text-slate-400 text-sm">{teams[currentTeamIndex].name} ניחשו וקיבלו +1</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-4xl">🎉</span>
+                  <span className="text-3xl font-black text-amber-400">נגנב!</span>
+                  <span className="text-slate-400 text-sm">{stealClaimedByIndex !== null ? teams[stealClaimedByIndex].name : ''} גנבו +1</span>
+                </>
+              )}
             </div>
           ) : (
             <>
               <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
-                <Button
-                  variant="team1"
-                  size="xl"
-                  onClick={() => handleClaimSteal(0)}
-                  className="h-full text-xl flex flex-col items-center justify-center gap-2"
-                >
-                  <span>{teams[0].name}</span>
-                  <span className="text-3xl">🔔</span>
-                </Button>
-                <Button
-                  variant="team2"
-                  size="xl"
-                  onClick={() => handleClaimSteal(1)}
-                  className="h-full text-xl flex flex-col items-center justify-center gap-2"
-                >
-                  <span>{teams[1].name}</span>
-                  <span className="text-3xl">🔔</span>
-                </Button>
+                {([0, 1] as const).map((i) => (
+                  <Button
+                    key={i}
+                    variant={i === 0 ? 'team1' : 'team2'}
+                    size="xl"
+                    onClick={() => handleClaimSteal(i)}
+                    className="h-full text-xl flex flex-col items-center justify-center gap-2"
+                  >
+                    <span>{teams[i].name}</span>
+                    <span className="text-3xl">
+                      {i === currentTeamIndex ? '🛡️' : '🔔'}
+                    </span>
+                    <span className="text-xs opacity-70">
+                      {i === currentTeamIndex ? 'הצלה' : 'גניבה'}
+                    </span>
+                  </Button>
+                ))}
               </div>
               <Button
                 variant="secondary"
@@ -207,7 +224,7 @@ export function GameBoardPage() {
 
       {/* ── TURN SUMMARY phase ── */}
       {phase === GamePhase.TURN_SUMMARY && (
-        <div className="flex-1 min-h-0 overflow-y-auto">
+        <div className="flex-1 min-h-0">
           <TurnSummary onContinue={proceedFromSummary} />
         </div>
       )}
