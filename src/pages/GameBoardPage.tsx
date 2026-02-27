@@ -120,13 +120,13 @@ export function GameBoardPage() {
             <ScoreBoard />
           </div>
 
-          {/* Card — constrained height, does not consume all space */}
-          <div className="shrink-0" style={{ height: "360px" }}>
+          {/* Card — fills remaining space, useFitText handles font size */}
+          <div className="flex-1 min-h-0">
             <CardDisplay disabled={!isRunning} />
           </div>
 
-          {/* Buttons — large, fill remaining space */}
-          <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
+          {/* Buttons — fixed height, always visible */}
+          <div className="grid grid-cols-2 gap-4 shrink-0 h-28">
             <Button
               variant="success"
               size="xl"
@@ -165,14 +165,14 @@ export function GameBoardPage() {
             </p>
           </div>
 
-          {/* Steal card — same constrained height as game card */}
-          <div className="shrink-0" style={{ height: "360px" }}>
+          {/* Steal card — fills remaining space */}
+          <div className="flex-1 min-h-0">
             <StealCardDisplay />
           </div>
 
-          {/* Buttons fill remaining space */}
+          {/* Buttons — fixed height, always visible */}
           {stealClaimed ? (
-            <div className="flex-1 flex flex-col items-center justify-center gap-2 animate-bounce">
+            <div className="shrink-0 h-36 flex flex-col items-center justify-center gap-2 animate-bounce">
               {stealClaimedByIndex === currentTeamIndex ? (
                 <>
                   <span className="text-4xl">🛡️</span>
@@ -189,7 +189,7 @@ export function GameBoardPage() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
+              <div className="grid grid-cols-2 gap-4 shrink-0 h-28">
                 {([0, 1] as const).map((i) => (
                   <Button
                     key={i}
