@@ -1,14 +1,12 @@
 import { useMemo } from 'react';
 import { useGameStore } from '../../store/gameStore';
-import { Button } from '../ui';
+import { useFitText } from '../../hooks/useFitText';
 
 interface CardDisplayProps {
-  onCorrect: () => void;
-  onSkip: () => void;
   disabled?: boolean;
 }
 
-export function CardDisplay({ onCorrect, onSkip, disabled = false }: CardDisplayProps) {
+export function CardDisplay({ disabled = false }: CardDisplayProps) {
   const { cards, currentCardId } = useGameStore();
 
   const currentCard = useMemo(() => {
@@ -16,43 +14,38 @@ export function CardDisplay({ onCorrect, onSkip, disabled = false }: CardDisplay
     return cards.find((c) => c.id === currentCardId) || null;
   }, [cards, currentCardId]);
 
+  const word = currentCard?.word ?? '';
+  const { containerRef, fontSize } = useFitText(word);
+
   if (!currentCard) {
     return (
-      <div className="bg-slate-800/80 backdrop-blur rounded-3xl p-8 text-center">
+      <div className="h-full bg-slate-800/80 backdrop-blur rounded-3xl flex items-center justify-center">
         <p className="text-2xl text-slate-400">אין קלפים</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl border border-slate-700">
-        <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
-            {currentCard.word}
-          </h2>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
-        <Button
-          variant="success"
-          size="xl"
-          onClick={onCorrect}
-          disabled={disabled}
-          className="py-6 text-2xl"
+    <div
+      className={`
+        h-full
+        bg-gradient-to-br from-slate-800 to-slate-900
+        rounded-3xl shadow-2xl border border-slate-700
+        overflow-hidden
+        transition-opacity duration-150
+        ${disabled ? 'opacity-60' : 'opacity-100'}
+      `}
+    >
+      <div
+        ref={containerRef}
+        className="h-full w-full flex items-center justify-center p-8"
+      >
+        <h2
+          style={{ fontSize }}
+          className="font-black text-white text-center leading-tight"
         >
-          נכון ✓
-        </Button>
-        <Button
-          variant="danger"
-          size="xl"
-          onClick={onSkip}
-          disabled={disabled}
-          className="py-6 text-2xl"
-        >
-          דלג ✗
-        </Button>
+          {word}
+        </h2>
       </div>
     </div>
   );

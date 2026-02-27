@@ -4,7 +4,7 @@ import { useGameStore } from '../store/gameStore';
 import { GamePhase } from '../store/types';
 import { useTimer } from '../hooks/useTimer';
 import { useAudio } from '../hooks/useAudio';
-import { CardDisplay, ScoreBoard, StealRound, TurnSummary, Timer } from '../components/game';
+import { CardDisplay, ScoreBoard, StealCardDisplay, TurnSummary, Timer } from '../components/game';
 import { Button } from '../components/ui';
 import { ROUTES, TICK_START_SECONDS } from '../consts';
 
@@ -13,6 +13,8 @@ export function GameBoardPage() {
   const {
     phase,
     timerDuration,
+    teams,
+    stealClaimed,
     markCorrect,
     markSkipped,
     endTurn,
@@ -80,10 +82,6 @@ export function GameBoardPage() {
     endTurn();
   };
 
-  const handleContinue = () => {
-    proceedFromSummary();
-  };
-
   const handleExitGame = () => {
     if (window.confirm('האם לצאת מהמשחק? ההתקדמות תישמר.')) {
       navigate(ROUTES.HOME);
@@ -91,8 +89,10 @@ export function GameBoardPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-4">
-      <div className="flex justify-between items-center mb-4">
+    <div className="h-[100dvh] flex flex-col overflow-hidden p-4 gap-3">
+
+      {/* ── Header row ── */}
+      <div className="flex justify-between items-center shrink-0">
         <Button variant="secondary" size="sm" onClick={handleExitGame}>
           יציאה
         </Button>
@@ -103,32 +103,115 @@ export function GameBoardPage() {
         )}
       </div>
 
-      <div className="flex-1 flex flex-col max-w-lg mx-auto w-full gap-4">
-        {phase === GamePhase.PLAYING && (
-          <>
+      {/* ── PLAYING phase ── */}
+      {phase === GamePhase.PLAYING && (
+        <>
+          <div className="shrink-0">
             <Timer secondsLeft={secondsLeft} totalSeconds={timerDuration} />
+          </div>
+
+          <div className="shrink-0">
             <ScoreBoard />
-            <CardDisplay
-              onCorrect={handleCorrect}
-              onSkip={handleSkip}
+          </div>
+
+          {/* Card fills all remaining vertical space */}
+          <div className="flex-1 min-h-0">
+            <CardDisplay disabled={!isRunning} />
+          </div>
+
+          {/* Buttons always anchored at bottom */}
+          <div className="grid grid-cols-2 gap-4 shrink-0">
+            <Button
+              variant="success"
+              size="xl"
+              onClick={handleCorrect}
               disabled={!isRunning}
-            />
-          </>
-        )}
+              className="h-20 text-2xl"
+            >
+              נכון ✓
+            </Button>
+            <Button
+              variant="danger"
+              size="xl"
+              onClick={handleSkip}
+              disabled={!isRunning}
+              className="h-20 text-2xl"
+            >
+              דלג ✗
+            </Button>
+          </div>
+        </>
+      )}
 
-        {phase === GamePhase.STEAL && (
-          <>
+      {/* ── STEAL phase ── */}
+      {phase === GamePhase.STEAL && (
+        <>
+          <div className="shrink-0">
             <ScoreBoard />
-            <StealRound onClaim={handleClaimSteal} onSkip={skipSteal} />
-          </>
-        )}
+          </div>
 
-        {phase === GamePhase.TURN_SUMMARY && (
-          <>
-            <TurnSummary onContinue={handleContinue} />
-          </>
-        )}
-      </div>
+          <div className="shrink-0 text-center">
+            <h2 className="text-2xl font-bold text-amber-400 animate-pulse">
+              סיבוב גניבה!
+            </h2>
+            <p className="text-slate-400 text-sm mt-1">
+              מי מנחש ראשון את המילה?
+            </p>
+          </div>
+
+          {/* Steal card fills all remaining vertical space */}
+          <div className="flex-1 min-h-0">
+            <StealCardDisplay />
+          </div>
+
+          {/* Buttons always anchored at bottom */}
+          {stealClaimed ? (
+            <div className="shrink-0 text-center py-6 text-3xl font-black text-emerald-400 animate-bounce">
+              נגנב! 🎉
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-4 shrink-0">
+                <Button
+                  variant="team1"
+                  size="xl"
+                  onClick={() => handleClaimSteal(0)}
+                  className="h-20 text-lg flex flex-col items-center justify-center gap-1"
+                >
+                  <span>{teams[0].name}</span>
+                  <span className="text-2xl">🔔</span>
+                </Button>
+                <Button
+                  variant="team2"
+                  size="xl"
+                  onClick={() => handleClaimSteal(1)}
+                  className="h-20 text-lg flex flex-col items-center justify-center gap-1"
+                >
+                  <span>{teams[1].name}</span>
+                  <span className="text-2xl">🔔</span>
+                </Button>
+              </div>
+              <Button
+                variant="secondary"
+                size="lg"
+                fullWidth
+                onClick={skipSteal}
+                className="shrink-0"
+              >
+                אף אחד לא ידע — דלג
+              </Button>
+            </>
+          )}
+        </>
+      )}
+
+      {/* ── TURN SUMMARY phase ── */}
+      {phase === GamePhase.TURN_SUMMARY && (
+        <div className="flex-1 min-h-0 overflow-y-auto">
+          <TurnSummary onContinue={proceedFromSummary} />
+        </div>
+      )}
+
     </div>
   );
 }
