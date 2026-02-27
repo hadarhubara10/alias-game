@@ -45,7 +45,7 @@ export function HomePage() {
           תסבירו מילים בלי להשתמש במילה עצמה!
         </p>
         {hasUsedCards && (
-          <p className="text-sm text-slate-400 mt-2">
+          <p className="text-base text-slate-400 mt-2">
             נותרו{' '}
             <span className="text-white font-bold">{remainingCards}</span>{' '}
             קלפים מתוך{' '}
@@ -54,8 +54,8 @@ export function HomePage() {
         )}
       </div>
 
-      {/* Main buttons — fill remaining space */}
-      <div className="flex-1 min-h-0 flex flex-col gap-3">
+      {/* Main buttons — fill remaining space, capped height */}
+      <div className="flex-1 min-h-0 flex flex-col gap-3 max-h-96">
         {canContinue && (
           <Button
             variant="success"

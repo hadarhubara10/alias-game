@@ -83,7 +83,7 @@ export function EndScreenPage() {
 
           {turnHistory.length > 0 && (
             <div className="border-t border-slate-700 pt-4">
-              <h3 className="text-sm text-slate-400 mb-3 text-center">
+              <h3 className="text-base text-slate-400 mb-3 text-center">
                 סיכום תורות
               </h3>
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -95,7 +95,7 @@ export function EndScreenPage() {
                   return (
                     <div
                       key={index}
-                      className="bg-slate-700/50 rounded-lg p-2 text-sm flex justify-between items-center"
+                      className="bg-slate-700/50 rounded-lg p-2 text-base flex justify-between items-center"
                     >
                       <span className="text-slate-300">
                         תור {index + 1}: {team?.name}

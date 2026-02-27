@@ -72,7 +72,7 @@ export function TeamSetupPage() {
               onChange={(e) => setDuration(Number(e.target.value))}
               className="w-full h-3 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
             />
-            <div className="flex justify-between text-sm text-slate-500 mt-1">
+            <div className="flex justify-between text-base text-slate-500 mt-1">
               <span>{MIN_TIMER_DURATION}s</span>
               <span>{MAX_TIMER_DURATION}s</span>
             </div>

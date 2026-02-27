@@ -191,7 +191,7 @@ export function AdminPanelPage() {
                 className="hidden"
               />
             </div>
-            <div className="text-slate-400 text-sm">
+            <div className="text-slate-400 text-base">
               סה״כ: <span className="text-white font-bold">{cards.length}</span> | שומשו:{' '}
               <span className="text-white font-bold">{usedCardIds.length}</span>
             </div>
@@ -316,7 +316,7 @@ export function AdminPanelPage() {
               className="w-full p-4 rounded-xl bg-rose-600/30 border-2 border-rose-500 text-right cursor-pointer hover:bg-rose-600/50 transition-colors"
             >
               <div className="text-white font-bold mb-1">החלף קלפים קיימים</div>
-              <div className="text-rose-300 text-sm">
+              <div className="text-rose-300 text-base">
                 מחק את כל {cards.length} הקלפים הקיימים והחלף בקלפים החדשים
               </div>
             </button>
@@ -326,7 +326,7 @@ export function AdminPanelPage() {
               className="w-full p-4 rounded-xl bg-emerald-600/30 border-2 border-emerald-500 text-right cursor-pointer hover:bg-emerald-600/50 transition-colors"
             >
               <div className="text-white font-bold mb-1">הוסף לקלפים קיימים</div>
-              <div className="text-emerald-300 text-sm">
+              <div className="text-emerald-300 text-base">
                 שמור את {cards.length} הקלפים הקיימים והוסף עוד {pendingImportWords.length}
               </div>
             </button>

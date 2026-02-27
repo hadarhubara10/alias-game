@@ -20,10 +20,10 @@ export function ScoreBoard() {
               ${currentTeamIndex === index ? 'ring-4 ring-white/50 scale-105' : ''}
             `}
           >
-            <div className="text-sm text-slate-300 mb-1">{team.name}</div>
+            <div className="text-base text-slate-300 mb-1">{team.name}</div>
             <div className="text-4xl font-black text-white">{team.score}</div>
             {currentTeamIndex === index && (
-              <div className="text-xs text-white/80 mt-1 animate-pulse">
+              <div className="text-sm text-white/80 mt-1 animate-pulse">
                 משחקים עכשיו
               </div>
             )}
@@ -31,7 +31,7 @@ export function ScoreBoard() {
         ))}
       </div>
 
-      <div className="text-center text-slate-400 text-sm">
+      <div className="text-center text-slate-400 text-base">
         נותרו {remainingCards} קלפים
       </div>
     </div>

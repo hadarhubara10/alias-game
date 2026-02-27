@@ -29,6 +29,7 @@ export function GameBoardPage() {
   const { playTick, playTurnEnd, playCorrect, playBuzz } = useAudio();
 
   const handleTimerComplete = useCallback(() => {
+    setStealClaimedByIndex(null);
     playTurnEnd();
     endTurn();
   }, [playTurnEnd, endTurn]);
@@ -62,8 +63,6 @@ export function GameBoardPage() {
       navigate(ROUTES.HOME);
     } else if (phase === GamePhase.END) {
       navigate(ROUTES.END);
-    } else if (phase === GamePhase.STEAL) {
-      setStealClaimedByIndex(null);
     }
   }, [phase, navigate]);
 
@@ -83,6 +82,7 @@ export function GameBoardPage() {
   };
 
   const handleEndTurnEarly = () => {
+    setStealClaimedByIndex(null);
     pause();
     playTurnEnd();
     endTurn();
@@ -160,7 +160,7 @@ export function GameBoardPage() {
             <h2 className="text-2xl font-bold text-amber-400 animate-pulse">
               סיבוב גניבה!
             </h2>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-slate-400 text-base mt-1">
               מי מנחש ראשון את המילה?
             </p>
           </div>
@@ -177,13 +177,13 @@ export function GameBoardPage() {
                 <>
                   <span className="text-4xl">🛡️</span>
                   <span className="text-3xl font-black text-emerald-400">הצלתם!</span>
-                  <span className="text-slate-400 text-sm">{teams[currentTeamIndex].name} ניחשו וקיבלו +1</span>
+                  <span className="text-slate-400 text-base">{teams[currentTeamIndex].name} ניחשו וקיבלו +1</span>
                 </>
               ) : (
                 <>
                   <span className="text-4xl">🎉</span>
                   <span className="text-3xl font-black text-amber-400">נגנב!</span>
-                  <span className="text-slate-400 text-sm">{stealClaimedByIndex !== null ? teams[stealClaimedByIndex].name : ''} גנבו +1</span>
+                  <span className="text-slate-400 text-base">{stealClaimedByIndex !== null ? teams[stealClaimedByIndex].name : ''} גנבו +1</span>
                 </>
               )}
             </div>
@@ -196,15 +196,9 @@ export function GameBoardPage() {
                     variant={i === 0 ? 'team1' : 'team2'}
                     size="xl"
                     onClick={() => handleClaimSteal(i)}
-                    className="h-full text-xl flex flex-col items-center justify-center gap-2"
+                    className="h-full text-2xl flex items-center justify-center"
                   >
-                    <span>{teams[i].name}</span>
-                    <span className="text-3xl">
-                      {i === currentTeamIndex ? '🛡️' : '🔔'}
-                    </span>
-                    <span className="text-xs opacity-70">
-                      {i === currentTeamIndex ? 'הצלה' : 'גניבה'}
-                    </span>
+                    {teams[i].name}
                   </Button>
                 ))}
               </div>

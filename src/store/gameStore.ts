@@ -200,7 +200,7 @@ export const useGameStore = create<GameStore>()(
             turnHistory: [...state.turnHistory, turnRecord],
             phase: GamePhase.TURN_SUMMARY,
           }));
-        }, 1000);
+        }, 3000);
       },
 
       skipSteal: () => {
