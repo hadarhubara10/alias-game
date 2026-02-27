@@ -12,12 +12,15 @@ html {
   direction: rtl;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
   background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
 }
 
 #root {
-  min-height: 100vh;
+  height: 100%;
 }

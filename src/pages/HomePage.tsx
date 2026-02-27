@@ -31,7 +31,7 @@ export function HomePage() {
     phase === GamePhase.TURN_SUMMARY;
 
   return (
-    <div className="h-[100svh] flex flex-col overflow-hidden p-5 gap-4">
+    <div className="fixed inset-0 flex flex-col overflow-hidden p-5 gap-4">
 
       {/* Title */}
       <div className="shrink-0 text-center pt-4">
