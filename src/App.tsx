@@ -10,7 +10,7 @@ import { ROUTES } from './consts';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/alias-game/">
       <div className="min-h-screen text-white" dir="rtl">
         <Routes>
           <Route path={ROUTES.HOME} element={<HomePage />} />
