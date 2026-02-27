@@ -114,19 +114,19 @@ export function GameBoardPage() {
             <ScoreBoard />
           </div>
 
-          {/* Card fills all remaining vertical space */}
-          <div className="flex-1 min-h-0">
+          {/* Card — constrained height, does not consume all space */}
+          <div className="shrink-0" style={{ height: "360px" }}>
             <CardDisplay disabled={!isRunning} />
           </div>
 
-          {/* Buttons always anchored at bottom */}
-          <div className="grid grid-cols-2 gap-4 shrink-0">
+          {/* Buttons — large, fill remaining space */}
+          <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
             <Button
               variant="success"
               size="xl"
               onClick={handleCorrect}
               disabled={!isRunning}
-              className="h-20 text-2xl"
+              className="h-full text-3xl"
             >
               נכון ✓
             </Button>
@@ -135,7 +135,7 @@ export function GameBoardPage() {
               size="xl"
               onClick={handleSkip}
               disabled={!isRunning}
-              className="h-20 text-2xl"
+              className="h-full text-3xl"
             >
               דלג ✗
             </Button>
@@ -159,36 +159,36 @@ export function GameBoardPage() {
             </p>
           </div>
 
-          {/* Steal card fills all remaining vertical space */}
-          <div className="flex-1 min-h-0">
+          {/* Steal card — same constrained height as game card */}
+          <div className="shrink-0" style={{ height: "360px" }}>
             <StealCardDisplay />
           </div>
 
-          {/* Buttons always anchored at bottom */}
+          {/* Buttons fill remaining space */}
           {stealClaimed ? (
-            <div className="shrink-0 text-center py-6 text-3xl font-black text-emerald-400 animate-bounce">
+            <div className="flex-1 flex items-center justify-center text-3xl font-black text-emerald-400 animate-bounce">
               נגנב! 🎉
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 shrink-0">
+              <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
                 <Button
                   variant="team1"
                   size="xl"
                   onClick={() => handleClaimSteal(0)}
-                  className="h-20 text-lg flex flex-col items-center justify-center gap-1"
+                  className="h-full text-xl flex flex-col items-center justify-center gap-2"
                 >
                   <span>{teams[0].name}</span>
-                  <span className="text-2xl">🔔</span>
+                  <span className="text-3xl">🔔</span>
                 </Button>
                 <Button
                   variant="team2"
                   size="xl"
                   onClick={() => handleClaimSteal(1)}
-                  className="h-20 text-lg flex flex-col items-center justify-center gap-1"
+                  className="h-full text-xl flex flex-col items-center justify-center gap-2"
                 >
                   <span>{teams[1].name}</span>
-                  <span className="text-2xl">🔔</span>
+                  <span className="text-3xl">🔔</span>
                 </Button>
               </div>
               <Button
