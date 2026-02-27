@@ -95,7 +95,7 @@ export function GameBoardPage() {
   };
 
   return (
-    <div className="fixed inset-0 flex flex-col overflow-hidden p-4 gap-3">
+    <div className="h-full flex flex-col overflow-hidden p-4 gap-3">
 
       {/* ── Header row ── */}
       <div className="flex justify-between items-center shrink-0">

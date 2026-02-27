@@ -7,11 +7,14 @@ import {
   EndScreenPage,
 } from './pages';
 import { ROUTES } from './consts';
+import { useVisualViewport } from './hooks/useVisualViewport';
 
 function App() {
+  useVisualViewport();
+
   return (
     <BrowserRouter basename="/alias-game/">
-      <div className="min-h-screen text-white" dir="rtl">
+      <div className="h-full text-white" dir="rtl">
         <Routes>
           <Route path={ROUTES.HOME} element={<HomePage />} />
           <Route path={ROUTES.TEAM_SETUP} element={<TeamSetupPage />} />

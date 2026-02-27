@@ -16,11 +16,14 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   height: 100%;
+  /* Prevent pull-to-refresh and bounce scroll on mobile */
+  overscroll-behavior: none;
   background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
 }
 
 #root {
-  height: 100%;
+  /* --vvh is set dynamically by useVisualViewport hook to the actual visible height */
+  height: var(--vvh, 100svh);
+  overflow: hidden;
 }
