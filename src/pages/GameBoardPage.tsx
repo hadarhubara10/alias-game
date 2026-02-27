@@ -26,7 +26,7 @@ export function GameBoardPage() {
 
   const [stealClaimedByIndex, setStealClaimedByIndex] = useState<0 | 1 | null>(null);
 
-  const { playTick, playTurnEnd, playCorrect, playBuzz } = useAudio();
+  const { playTick, playTurnEnd, playCorrect, playSkip, playBuzz } = useAudio();
 
   const handleTimerComplete = useCallback(() => {
     setStealClaimedByIndex(null);
@@ -72,6 +72,7 @@ export function GameBoardPage() {
   };
 
   const handleSkip = () => {
+    playSkip();
     markSkipped();
   };
 

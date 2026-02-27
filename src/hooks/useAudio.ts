@@ -4,6 +4,7 @@ interface UseAudioReturn {
   playTick: () => void;
   playTurnEnd: () => void;
   playCorrect: () => void;
+  playSkip: () => void;
   playBuzz: () => void;
 }
 
@@ -66,21 +67,41 @@ export function useAudio(): UseAudioReturn {
 
   const playCorrect = useCallback(() => {
     const ctx = getAudioContext();
-    const oscillator = ctx.createOscillator();
-    const gainNode = ctx.createGain();
+    // Happy ascending arpeggio: C5 → E5 → G5 → C6
+    const notes = [523.25, 659.25, 783.99, 1046.5];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      const t = ctx.currentTime + i * 0.1;
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(0.35, t + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.01, t + 0.15);
+      osc.start(t);
+      osc.stop(t + 0.15);
+    });
+  }, [getAudioContext]);
 
-    oscillator.connect(gainNode);
-    gainNode.connect(ctx.destination);
-
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(523.25, ctx.currentTime);
-    oscillator.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
-
-    gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-
-    oscillator.start(ctx.currentTime);
-    oscillator.stop(ctx.currentTime + 0.2);
+  const playSkip = useCallback(() => {
+    const ctx = getAudioContext();
+    // Descending "nope" two-note drop: A4 → E4, soft triangle wave
+    const notes = [440, 330];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'triangle';
+      const t = ctx.currentTime + i * 0.12;
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.25, t);
+      gain.gain.exponentialRampToValueAtTime(0.01, t + 0.12);
+      osc.start(t);
+      osc.stop(t + 0.12);
+    });
   }, [getAudioContext]);
 
   const playBuzz = useCallback(() => {
@@ -105,6 +126,7 @@ export function useAudio(): UseAudioReturn {
     playTick,
     playTurnEnd,
     playCorrect,
+    playSkip,
     playBuzz,
   };
 }
