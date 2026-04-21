@@ -35,7 +35,7 @@ export function HomePage() {
 
       {/* Title */}
       <div className="shrink-0 text-center pt-4">
-        <div className="text-3xl mb-2">🇮🇱 ✡️ 🎆</div>
+        <div className="text-3xl mb-2">🇮🇱 🎆 🇮🇱</div>
         <h1 className="text-6xl font-black text-white drop-shadow-lg">אליאס</h1>
         <h2 className="text-2xl font-bold text-sky-200 mt-1">מהדורת יום העצמאות</h2>
       </div>

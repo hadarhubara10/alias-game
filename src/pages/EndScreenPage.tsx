@@ -55,7 +55,7 @@ export function EndScreenPage() {
 
         <div className="bg-blue-950/60 backdrop-blur rounded-3xl p-6 mb-6 border-2 border-white/30">
           <h2 className="text-xl font-bold text-white text-center mb-4">
-            ✡️ תוצאות סופיות ✡️
+            🇮🇱 תוצאות סופיות 🇮🇱
           </h2>
 
           <div className="grid grid-cols-2 gap-4 mb-6">

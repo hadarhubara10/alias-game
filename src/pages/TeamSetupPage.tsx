@@ -29,7 +29,7 @@ export function TeamSetupPage() {
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="max-w-md w-full">
         <h1 className="text-4xl font-black text-white text-center mb-8">
-          🇮🇱 הגדרת קבוצות ✡️
+          🇮🇱 הגדרת קבוצות 🇮🇱
         </h1>
 
         <div className="bg-blue-950/60 backdrop-blur rounded-3xl p-6 space-y-6 border-2 border-white/30">

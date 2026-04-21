@@ -40,8 +40,8 @@ export function CardDisplay({ disabled = false }: CardDisplayProps) {
         ref={containerRef}
         className="h-full w-full flex items-center justify-center p-8 relative"
       >
-        <div className="absolute top-3 right-3 text-2xl opacity-60">✡️</div>
-        <div className="absolute bottom-3 left-3 text-2xl opacity-60">✡️</div>
+        <div className="absolute top-3 right-3 text-2xl opacity-70">🇮🇱</div>
+        <div className="absolute bottom-3 left-3 text-2xl opacity-70">🇮🇱</div>
         <h2
           style={{ fontSize }}
           className="font-black text-blue-900 text-center leading-tight"
