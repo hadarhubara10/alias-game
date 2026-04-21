@@ -147,7 +147,7 @@ export function AdminPanelPage() {
     <div className="min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold text-white">ניהול קלפים</h1>
+          <h1 className="text-3xl font-bold text-white">🇮🇱 ניהול קלפים</h1>
           <Button variant="secondary" size="sm" onClick={() => navigate(ROUTES.HOME)}>
             חזרה
           </Button>
@@ -159,7 +159,7 @@ export function AdminPanelPage() {
           </div>
         )}
 
-        <div className="bg-slate-800/60 backdrop-blur rounded-2xl p-4 mb-4">
+        <div className="bg-blue-950/60 backdrop-blur rounded-2xl p-4 mb-4 border border-white/20">
           <div className="flex flex-wrap gap-3 items-center justify-between">
             <div className="flex flex-wrap gap-2">
               <Button variant="primary" size="md" onClick={handleOpenAdd}>
@@ -179,7 +179,7 @@ export function AdminPanelPage() {
                 variant="secondary"
                 size="md"
                 onClick={downloadExcelTemplate}
-                className="text-amber-300 border border-amber-600"
+                className="text-amber-300 border border-amber-500"
               >
                 הורד תבנית
               </Button>
@@ -191,38 +191,38 @@ export function AdminPanelPage() {
                 className="hidden"
               />
             </div>
-            <div className="text-slate-400 text-base">
+            <div className="text-sky-200 text-base">
               סה״כ: <span className="text-white font-bold">{cards.length}</span> | שומשו:{' '}
               <span className="text-white font-bold">{usedCardIds.length}</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-800/60 backdrop-blur rounded-2xl p-4 mb-4">
+        <div className="bg-blue-950/60 backdrop-blur rounded-2xl p-4 mb-4 border border-white/20">
           <input
             type="text"
             placeholder="חיפוש מילה..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-text"
+            className="w-full px-4 py-2 bg-blue-900/60 border border-blue-500 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-text placeholder-sky-300"
           />
         </div>
 
-        <div className="bg-slate-800/60 backdrop-blur rounded-2xl overflow-hidden">
+        <div className="bg-blue-950/60 backdrop-blur rounded-2xl overflow-hidden border border-white/20">
           <div className="max-h-[60vh] overflow-y-auto">
             <table className="w-full">
-              <thead className="bg-slate-700 sticky top-0">
+              <thead className="bg-blue-900 sticky top-0">
                 <tr>
-                  <th className="px-4 py-3 text-right text-slate-300 font-medium">מילה</th>
-                  <th className="px-4 py-3 text-right text-slate-300 font-medium w-24">סטטוס</th>
-                  <th className="px-4 py-3 text-right text-slate-300 font-medium w-32">פעולות</th>
+                  <th className="px-4 py-3 text-right text-sky-100 font-medium">מילה</th>
+                  <th className="px-4 py-3 text-right text-sky-100 font-medium w-24">סטטוס</th>
+                  <th className="px-4 py-3 text-right text-sky-100 font-medium w-32">פעולות</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-700">
+              <tbody className="divide-y divide-white/10">
                 {filteredCards.map((card) => (
                   <tr
                     key={card.id}
-                    className={`hover:bg-slate-700/50 transition-colors ${
+                    className={`hover:bg-blue-900/50 transition-colors ${
                       usedSet.has(card.id) ? 'opacity-50' : ''
                     }`}
                   >
@@ -238,7 +238,7 @@ export function AdminPanelPage() {
                       <div className="flex gap-3">
                         <button
                           onClick={() => handleOpenEdit(card)}
-                          className="text-purple-400 hover:text-purple-300 cursor-pointer transition-colors"
+                          className="text-sky-300 hover:text-white cursor-pointer transition-colors"
                         >
                           עריכה
                         </button>
@@ -255,7 +255,7 @@ export function AdminPanelPage() {
               </tbody>
             </table>
             {filteredCards.length === 0 && (
-              <div className="p-8 text-center text-slate-400">לא נמצאו קלפים</div>
+              <div className="p-8 text-center text-sky-200">לא נמצאו קלפים</div>
             )}
           </div>
         </div>
@@ -269,13 +269,13 @@ export function AdminPanelPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="block text-slate-300 mb-2">מילה</label>
+            <label className="block text-sky-200 mb-2">מילה</label>
             <input
               type="text"
               value={formWord}
               onChange={(e) => setFormWord(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSaveCard()}
-              className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-text"
+              className="w-full px-4 py-2 bg-blue-900/60 border border-blue-500 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-text placeholder-sky-300"
               placeholder="הכנס מילה..."
               autoFocus
             />
@@ -304,7 +304,7 @@ export function AdminPanelPage() {
         title="ייבוא קלפים"
       >
         <div className="space-y-4">
-          <p className="text-slate-300">
+          <p className="text-sky-100">
             נמצאו <span className="text-white font-bold">{pendingImportWords.length}</span> מילים.
             <br />
             כיצד לייבא אותם?

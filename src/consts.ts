@@ -20,18 +20,18 @@ export const DEFAULT_TEAM_NAMES: [string, string] = ['קבוצה א׳', 'קבו�
 
 export const COLORS = {
   team1: {
-    bg: 'bg-purple-600',
-    bgHover: 'hover:bg-purple-700',
-    text: 'text-purple-600',
-    border: 'border-purple-600',
-    ring: 'ring-purple-400',
+    bg: 'bg-blue-600',
+    bgHover: 'hover:bg-blue-700',
+    text: 'text-blue-600',
+    border: 'border-blue-600',
+    ring: 'ring-blue-400',
   },
   team2: {
-    bg: 'bg-amber-500',
-    bgHover: 'hover:bg-amber-600',
-    text: 'text-amber-500',
-    border: 'border-amber-500',
-    ring: 'ring-amber-400',
+    bg: 'bg-white',
+    bgHover: 'hover:bg-slate-100',
+    text: 'text-blue-800',
+    border: 'border-white',
+    ring: 'ring-white',
   },
   correct: {
     bg: 'bg-emerald-500',
