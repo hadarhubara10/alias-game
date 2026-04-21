@@ -158,10 +158,10 @@ export function GameBoardPage() {
           </div>
 
           <div className="shrink-0 text-center">
-            <h2 className="text-2xl font-bold text-amber-400 animate-pulse">
-              סיבוב גניבה!
+            <h2 className="text-2xl font-bold text-amber-300 animate-pulse">
+              🎆 סיבוב גניבה! 🎆
             </h2>
-            <p className="text-slate-400 text-base mt-1">
+            <p className="text-sky-200 text-base mt-1">
               מי מנחש ראשון את המילה?
             </p>
           </div>
@@ -177,14 +177,14 @@ export function GameBoardPage() {
               {stealClaimedByIndex === currentTeamIndex ? (
                 <>
                   <span className="text-4xl">🛡️</span>
-                  <span className="text-3xl font-black text-emerald-400">הצלתם!</span>
-                  <span className="text-slate-400 text-base">{teams[currentTeamIndex].name} ניחשו וקיבלו +1</span>
+                  <span className="text-3xl font-black text-emerald-300">הצלתם!</span>
+                  <span className="text-sky-200 text-base">{teams[currentTeamIndex].name} ניחשו וקיבלו +1</span>
                 </>
               ) : (
                 <>
-                  <span className="text-4xl">🎉</span>
-                  <span className="text-3xl font-black text-amber-400">נגנב!</span>
-                  <span className="text-slate-400 text-base">{stealClaimedByIndex !== null ? teams[stealClaimedByIndex].name : ''} גנבו +1</span>
+                  <span className="text-4xl">🎆</span>
+                  <span className="text-3xl font-black text-amber-300">נגנב!</span>
+                  <span className="text-sky-200 text-base">{stealClaimedByIndex !== null ? teams[stealClaimedByIndex].name : ''} גנבו +1</span>
                 </>
               )}
             </div>

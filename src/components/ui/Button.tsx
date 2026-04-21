@@ -11,12 +11,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-purple-600 hover:bg-purple-700 text-white',
+  primary: 'bg-blue-600 hover:bg-blue-700 text-white',
   secondary: 'bg-slate-600 hover:bg-slate-700 text-white',
   success: 'bg-emerald-500 hover:bg-emerald-600 text-white',
   danger: 'bg-rose-500 hover:bg-rose-600 text-white',
-  team1: 'bg-purple-600 hover:bg-purple-700 text-white',
-  team2: 'bg-amber-500 hover:bg-amber-600 text-white',
+  team1: 'bg-blue-600 hover:bg-blue-700 text-white',
+  team2: 'bg-white hover:bg-slate-100 text-blue-800 border-2 border-blue-600',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -45,7 +45,7 @@ export function Button({
         transition-all duration-200
         active:scale-95
         disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
-        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400
         ${className}
       `}
       disabled={disabled}

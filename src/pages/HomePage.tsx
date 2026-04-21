@@ -35,17 +35,18 @@ export function HomePage() {
 
       {/* Title */}
       <div className="shrink-0 text-center pt-4">
+        <div className="text-3xl mb-2">🇮🇱 ✡️ 🎆</div>
         <h1 className="text-6xl font-black text-white drop-shadow-lg">אליאס</h1>
-        <h2 className="text-2xl font-bold text-purple-300 mt-1">מהדורת פורים 🎭</h2>
+        <h2 className="text-2xl font-bold text-sky-200 mt-1">מהדורת יום העצמאות</h2>
       </div>
 
       {/* Description + card count */}
-      <div className="shrink-0 bg-slate-800/60 backdrop-blur rounded-2xl p-4 text-center">
-        <p className="text-slate-300">
+      <div className="shrink-0 bg-blue-950/60 backdrop-blur rounded-2xl p-4 text-center border-2 border-white/30">
+        <p className="text-sky-100">
           תסבירו מילים בלי להשתמש במילה עצמה!
         </p>
         {hasUsedCards && (
-          <p className="text-base text-slate-400 mt-2">
+          <p className="text-base text-sky-200/80 mt-2">
             נותרו{' '}
             <span className="text-white font-bold">{remainingCards}</span>{' '}
             קלפים מתוך{' '}

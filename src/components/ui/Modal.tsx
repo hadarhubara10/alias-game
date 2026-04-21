@@ -35,7 +35,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative bg-slate-800 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-auto">
+      <div className="relative bg-slate-800 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-auto border-2 border-blue-500">
         {title && (
           <div className="flex items-center justify-between p-4 border-b border-slate-700">
             <h2 className="text-xl font-bold text-white">{title}</h2>

@@ -44,8 +44,8 @@ export function TurnSummary({ onContinue }: TurnSummaryProps) {
       </div>
 
       {/* Turn total */}
-      <div className="shrink-0 text-center bg-slate-800/60 rounded-2xl py-3">
-        <div className="text-slate-400 text-base">סה״כ לתור</div>
+      <div className="shrink-0 text-center bg-blue-950/60 rounded-2xl py-3 border border-white/20">
+        <div className="text-sky-200 text-base">סה״כ לתור</div>
         <div
           className={`text-5xl font-black ${turnScore >= 0 ? 'text-emerald-400' : 'text-rose-400'
             }`}
@@ -66,8 +66,8 @@ export function TurnSummary({ onContinue }: TurnSummaryProps) {
       {/* Word lists — scrollable */}
       <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-3">
         {currentTurn.correct.length > 0 && (
-          <div className="bg-slate-800/40 rounded-2xl p-4">
-            <h3 className="text-base font-semibold text-slate-300 mb-3">✅ מילים שנוחשו</h3>
+          <div className="bg-blue-950/50 rounded-2xl p-4 border border-white/15">
+            <h3 className="text-base font-semibold text-sky-100 mb-3">✅ מילים שנוחשו</h3>
             <div className="flex flex-wrap gap-2">
               {currentTurn.correct.map((word, i) => (
                 <Badge key={i} variant="success" size="md">{word}</Badge>
@@ -77,8 +77,8 @@ export function TurnSummary({ onContinue }: TurnSummaryProps) {
         )}
 
         {currentTurn.skipped.length > 0 && (
-          <div className="bg-slate-800/40 rounded-2xl p-4">
-            <h3 className="text-base font-semibold text-slate-300 mb-3">⏭️ מילים שדולגו</h3>
+          <div className="bg-blue-950/50 rounded-2xl p-4 border border-white/15">
+            <h3 className="text-base font-semibold text-sky-100 mb-3">⏭️ מילים שדולגו</h3>
             <div className="flex flex-wrap gap-2">
               {currentTurn.skipped.map((word, i) => (
                 <Badge key={i} variant="danger" size="md">{word}</Badge>
@@ -94,13 +94,13 @@ export function TurnSummary({ onContinue }: TurnSummaryProps) {
           <div
             key={team.id}
             className={`rounded-2xl p-3 text-center ${index === 0
-              ? 'bg-purple-600/30 border border-purple-500'
-              : 'bg-amber-500/30 border border-amber-500'
+              ? 'bg-blue-600/40 border-2 border-blue-400'
+              : 'bg-white/80 border-2 border-white'
               }`}
           >
-            <div className="text-base text-slate-300 font-medium">{team.name}</div>
+            <div className={`text-base font-medium ${index === 0 ? 'text-sky-100' : 'text-blue-800'}`}>{team.name}</div>
             <div
-              className={`text-6xl font-black ${index === 0 ? 'text-purple-400' : 'text-amber-400'
+              className={`text-6xl font-black ${index === 0 ? 'text-white' : 'text-blue-900'
                 }`}
             >
               {team.score}
@@ -117,7 +117,7 @@ export function TurnSummary({ onContinue }: TurnSummaryProps) {
         onClick={onContinue}
         className="shrink-0 h-16 text-xl"
       >
-        {remainingCards === 0 ? '🏆 לסיום המשחק' : 'לתור הבא ← '}
+        {remainingCards === 0 ? '🏆 לסיום המשחק' : 'לתור הבא 🇮🇱 ← '}
       </Button>
 
     </div>

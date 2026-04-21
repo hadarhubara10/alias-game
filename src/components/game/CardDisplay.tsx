@@ -19,8 +19,8 @@ export function CardDisplay({ disabled = false }: CardDisplayProps) {
 
   if (!currentCard) {
     return (
-      <div className="h-full bg-slate-800/80 backdrop-blur rounded-3xl flex items-center justify-center">
-        <p className="text-2xl text-slate-400">אין קלפים</p>
+      <div className="h-full bg-blue-950/80 backdrop-blur rounded-3xl flex items-center justify-center border-2 border-white/40">
+        <p className="text-2xl text-sky-200">אין קלפים</p>
       </div>
     );
   }
@@ -29,8 +29,8 @@ export function CardDisplay({ disabled = false }: CardDisplayProps) {
     <div
       className={`
         h-full
-        bg-gradient-to-br from-slate-800 to-slate-900
-        rounded-3xl shadow-2xl border border-slate-700
+        bg-gradient-to-br from-white to-sky-50
+        rounded-3xl shadow-2xl border-4 border-blue-600
         overflow-hidden
         transition-opacity duration-150
         ${disabled ? 'opacity-60' : 'opacity-100'}
@@ -38,11 +38,13 @@ export function CardDisplay({ disabled = false }: CardDisplayProps) {
     >
       <div
         ref={containerRef}
-        className="h-full w-full flex items-center justify-center p-8"
+        className="h-full w-full flex items-center justify-center p-8 relative"
       >
+        <div className="absolute top-3 right-3 text-2xl opacity-60">✡️</div>
+        <div className="absolute bottom-3 left-3 text-2xl opacity-60">✡️</div>
         <h2
           style={{ fontSize }}
-          className="font-black text-white text-center leading-tight"
+          className="font-black text-blue-900 text-center leading-tight"
         >
           {word}
         </h2>

@@ -19,12 +19,12 @@ export function Timer({ secondsLeft, totalSeconds }: TimerProps) {
   };
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur rounded-2xl p-4">
+    <div className="bg-blue-950/60 backdrop-blur rounded-2xl p-4 border border-white/20">
       <div
         className={`
           text-6xl font-black text-center mb-3 transition-all
-          ${isDanger ? 'text-rose-500 animate-pulse scale-110' : ''}
-          ${isWarning && !isDanger ? 'text-amber-400' : ''}
+          ${isDanger ? 'text-rose-400 animate-pulse scale-110' : ''}
+          ${isWarning && !isDanger ? 'text-amber-300' : ''}
           ${!isWarning ? 'text-white' : ''}
         `}
       >

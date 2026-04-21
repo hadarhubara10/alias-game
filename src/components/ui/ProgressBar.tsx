@@ -7,7 +7,7 @@ interface ProgressBarProps {
 }
 
 const variantClasses = {
-  default: 'bg-purple-500',
+  default: 'bg-blue-500',
   warning: 'bg-amber-500',
   danger: 'bg-rose-500',
 };

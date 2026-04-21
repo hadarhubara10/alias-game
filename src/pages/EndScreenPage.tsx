@@ -38,22 +38,24 @@ export function EndScreenPage() {
         <div className="text-center mb-8">
           {isTie ? (
             <>
-              <h1 className="text-5xl font-black text-amber-400 mb-2">תיקו!</h1>
-              <p className="text-xl text-slate-300">שתי הקבוצות שוות בנקודות</p>
+              <div className="text-4xl mb-2">🇮🇱 🎆 🇮🇱</div>
+              <h1 className="text-5xl font-black text-amber-300 mb-2">תיקו!</h1>
+              <p className="text-xl text-sky-100">שתי הקבוצות שוות בנקודות</p>
             </>
           ) : (
             <>
-              <h1 className="text-5xl font-black text-emerald-400 mb-2">
+              <div className="text-4xl mb-2">🎆 🎇 🎆</div>
+              <h1 className="text-5xl font-black text-amber-300 mb-2">
                 🏆 {winner?.name} 🏆
               </h1>
-              <p className="text-xl text-slate-300">ניצחו את המשחק!</p>
+              <p className="text-xl text-sky-100">ניצחו את המשחק!</p>
             </>
           )}
         </div>
 
-        <div className="bg-slate-800/60 backdrop-blur rounded-3xl p-6 mb-6">
+        <div className="bg-blue-950/60 backdrop-blur rounded-3xl p-6 mb-6 border-2 border-white/30">
           <h2 className="text-xl font-bold text-white text-center mb-4">
-            תוצאות סופיות
+            ✡️ תוצאות סופיות ✡️
           </h2>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -64,14 +66,14 @@ export function EndScreenPage() {
                   rounded-xl p-4 text-center
                   ${
                     index === 0
-                      ? 'bg-purple-600/30 border-2 border-purple-500'
-                      : 'bg-amber-500/30 border-2 border-amber-500'
+                      ? 'bg-blue-600/40 border-2 border-blue-400'
+                      : 'bg-white/80 border-2 border-white'
                   }
-                  ${winner?.id === team.id ? 'ring-4 ring-emerald-400' : ''}
+                  ${winner?.id === team.id ? 'ring-4 ring-amber-300' : ''}
                 `}
               >
-                <div className="text-lg text-slate-300 mb-1">{team.name}</div>
-                <div className="text-5xl font-black text-white">{team.score}</div>
+                <div className={`text-lg mb-1 ${index === 0 ? 'text-sky-100' : 'text-blue-800'}`}>{team.name}</div>
+                <div className={`text-5xl font-black ${index === 0 ? 'text-white' : 'text-blue-900'}`}>{team.score}</div>
                 {winner?.id === team.id && (
                   <Badge variant="success" size="sm">
                     מנצח
@@ -82,8 +84,8 @@ export function EndScreenPage() {
           </div>
 
           {turnHistory.length > 0 && (
-            <div className="border-t border-slate-700 pt-4">
-              <h3 className="text-base text-slate-400 mb-3 text-center">
+            <div className="border-t border-white/20 pt-4">
+              <h3 className="text-base text-sky-200 mb-3 text-center">
                 סיכום תורות
               </h3>
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -95,9 +97,9 @@ export function EndScreenPage() {
                   return (
                     <div
                       key={index}
-                      className="bg-slate-700/50 rounded-lg p-2 text-base flex justify-between items-center"
+                      className="bg-blue-900/50 rounded-lg p-2 text-base flex justify-between items-center border border-white/10"
                     >
-                      <span className="text-slate-300">
+                      <span className="text-sky-100">
                         תור {index + 1}: {team?.name}
                       </span>
                       <div className="flex gap-2">

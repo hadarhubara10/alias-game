@@ -5,7 +5,7 @@ export function ScoreBoard() {
   const remainingCards = cards.length - usedCardIds.length;
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur rounded-2xl p-4">
+    <div className="bg-blue-950/60 backdrop-blur rounded-2xl p-4 border border-white/20">
       <div className="grid grid-cols-2 gap-4 mb-4">
         {teams.map((team, index) => (
           <div
@@ -14,16 +14,16 @@ export function ScoreBoard() {
               rounded-xl p-4 text-center transition-all
               ${
                 index === 0
-                  ? 'bg-purple-600/30 border-2 border-purple-500'
-                  : 'bg-amber-500/30 border-2 border-amber-500'
+                  ? 'bg-blue-600/40 border-2 border-blue-400'
+                  : 'bg-white/80 border-2 border-white'
               }
-              ${currentTeamIndex === index ? 'ring-4 ring-white/50 scale-105' : ''}
+              ${currentTeamIndex === index ? 'ring-4 ring-amber-300 scale-105' : ''}
             `}
           >
-            <div className="text-base text-slate-300 mb-1">{team.name}</div>
-            <div className="text-4xl font-black text-white">{team.score}</div>
+            <div className={`text-base mb-1 ${index === 0 ? 'text-sky-100' : 'text-blue-800'}`}>{team.name}</div>
+            <div className={`text-4xl font-black ${index === 0 ? 'text-white' : 'text-blue-900'}`}>{team.score}</div>
             {currentTeamIndex === index && (
-              <div className="text-sm text-white/80 mt-1 animate-pulse">
+              <div className={`text-sm mt-1 animate-pulse ${index === 0 ? 'text-white/90' : 'text-blue-700'}`}>
                 משחקים עכשיו
               </div>
             )}
@@ -31,7 +31,7 @@ export function ScoreBoard() {
         ))}
       </div>
 
-      <div className="text-center text-slate-400 text-base">
+      <div className="text-center text-sky-200 text-base">
         נותרו {remainingCards} קלפים
       </div>
     </div>
